@@ -1,6 +1,6 @@
 package no.hvl.dat100.oppgave4;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import no.hvl.dat100.oppgave3.Blogg;
@@ -13,7 +13,9 @@ public class SkrivBlogg {
 		try (PrintWriter skriver = new PrintWriter(mappe + "/" + filnavn)) {
             skriver.print(samling.toString());
             return true;
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+            System.err.println("Feil ved skriving til filen: " + mappe + "/" + filnavn);
+            e.printStackTrace();
             return false;
         }
 	}
